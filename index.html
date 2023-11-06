@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="app.css">
     <script src="index.js" defer></script>
 </head>
 <body>
-    <h1>Tic Tac Toe!</h1>
+    <div id="overlay">
+        <div id="marker-container">
+            <h1>Choose Your Marker</h1>
+            <div class="btn-container">
+                <button id="x">X</button>
+                <button id="o">O</button>
+            </div>
+        </div>
+    </div>
+    <h1>Tic Tac Toe</h1>
     <div id="game-board"></div>
     <!-- create game board html-->
     <!-- we will need a table-grid-like structure for the board-->
