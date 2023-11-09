@@ -62,3 +62,31 @@ h1 {
     box-shadow: 8px 8px 5px #54c9de;
     top: 3px;
 }
+
+.hidden {
+    display: none;
+}
+
+#gameboard-title {
+    font-size: 4rem;
+    text-align: center;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 0;
+    justify-content: center;
+    grid-template-areas: 
+        "a b c"
+        "d e f"
+        "g h i";
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    background-color: #cbecf1;
+    border: 5px solid #54c9de;
+}
