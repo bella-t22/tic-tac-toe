@@ -40,11 +40,13 @@ h1 {
     margin: 5px;
     border-radius: 4px;
     border: 1px solid #ed3baf;
+    box-shadow: 8px 8px 5px #ed3baf;
     background-color: #54c9de;
     color: #ed3baf;
     font-size: 1.1rem;
     font-weight: 700;
-    transition: all .5s;
+    position: relative;
+    transition: all .3s;
 }
 
 #marker-container button:hover {
@@ -52,4 +54,11 @@ h1 {
     bottom: 5px; */
     width: 160px;
     height: 40px;
+}
+
+#marker-container button:active {
+    background-color: #ed3baf;
+    color: #54c9de;
+    box-shadow: 8px 8px 5px #54c9de;
+    top: 3px;
 }

@@ -32,6 +32,7 @@ const gameFlow = (function () {
             playerOne = createPlayer('o', 0, 0);
             playerTwo = createPlayer('x', 0, 0);
         }
+        // once marker is chosen, we want to hide the marker overlay page and display the gameboard.
         return playerOne, playerTwo;
     }
 
