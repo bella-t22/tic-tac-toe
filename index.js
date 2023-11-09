@@ -10,14 +10,29 @@ const gameBoard = (function () {
     return board;
 }())
 
-function createPlayer(marker, score, roundsWon) {
-    return { marker, score, roundsWon };
-}
-
 const gameFlow = (function () {
-    function chooseMarker() {
-        // create dom elements for playerOne choosing x or o.
-        // use createPlayer factory function to create players one and two with chosen markers
+    const markerBtn = document.querySelectorAll('.marker-btn');
+    markerBtn.forEach((marker) => {
+        marker.addEventListener('click', () => {
+            chooseMarker(marker);
+        });
+    })
+
+    function createPlayer(marker, score, roundsWon) {
+        return { marker, score, roundsWon };
+    }
+
+    function chooseMarker(marker) {
+        let playerOne;
+        let playerTwo;
+        if (marker.value === 'x') {
+            playerOne = createPlayer('x', 0, 0);
+            playerTwo = createPlayer('o', 0, 0);
+        } else if (marker.value === 'o') {
+            playerOne = createPlayer('o', 0, 0);
+            playerTwo = createPlayer('x', 0, 0);
+        }
+        return playerOne, playerTwo;
     }
 
     function playRound() {
