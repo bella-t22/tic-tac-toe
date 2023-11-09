@@ -67,12 +67,20 @@ h1 {
     display: none;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
 #gameboard-title {
     font-size: 4rem;
     text-align: center;
 }
 
 #gameboard {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
@@ -89,4 +97,35 @@ h1 {
     height: 150px;
     background-color: #cbecf1;
     border: 5px solid #54c9de;
+}
+
+.p1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    justify-self: center;
+    align-content: center;
+}
+
+.p2 {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    justify-self: center;
+    align-content: center;
+}
+
+h2 {
+    font-family: 'Bevan', serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: #ed3baf;
+    text-decoration: underline;
+    text-align: center;
+}
+
+p {
+    font-family: 'Bevan', serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: #54c9de;
+    margin: 50px;
 }
