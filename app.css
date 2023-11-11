@@ -76,6 +76,7 @@ main {
 #gameboard-title {
     font-size: 4rem;
     text-align: center;
+    margin-bottom: 75px;
 }
 
 #gameboard {
@@ -97,6 +98,17 @@ main {
     height: 150px;
     background-color: #cbecf1;
     border: 5px solid #54c9de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell p {
+    color:#ed3baf;
+    text-shadow: 6px 6px #ed3baf7c;
+    font-size: 6rem;
+    margin: 0;
+    font-style: italic;
 }
 
 .p1 {
@@ -115,11 +127,15 @@ main {
 
 h2 {
     font-family: 'Bevan', serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     letter-spacing: 3px;
     color: #ed3baf;
     text-decoration: underline;
     text-align: center;
+}
+
+.highlight {
+    text-shadow: -5px -3px 2px #54c9de, -7px -5px 2px #ed3baf78;
 }
 
 p {

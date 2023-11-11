@@ -1,11 +1,11 @@
 const gameBoard = (function () {
     const board = [];
-    let cell;
+    let index;
     for (let i = 0; i < 9; i++) {
-        cell = board[i];
+        index = board[i];
         // const div = document.createElement('div');
         // cell.value ?
-        board.push(cell);
+        board.push(index);
     }
     return board;
 }())
@@ -22,9 +22,10 @@ const gameFlow = (function () {
         return { marker, score, roundsWon };
     }
 
+    let playerOne;
+    let playerTwo;
+
     function chooseMarker(marker) {
-        let playerOne;
-        let playerTwo;
         if (marker.value === 'x') {
             playerOne = createPlayer('x', 0, 0);
             playerTwo = createPlayer('o', 0, 0);
@@ -32,14 +33,45 @@ const gameFlow = (function () {
             playerOne = createPlayer('o', 0, 0);
             playerTwo = createPlayer('x', 0, 0);
         }
-        // once marker is chosen, we want to hide the marker overlay page and display the gameboard.
         const overlay = document.querySelector('#overlay');
         overlay.classList.add('hidden');
         return playerOne, playerTwo;
     }
 
     function playRound() {
-        // once markers are chosen, round can be played
-        // before coding this part, code html and css for the game board
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            // for each cell of the html board, we want to have a corresponding spot in the gameboard array.
+            cell.addEventListener('click', () => {
+                const playerOneName = document.getElementById('player-one');
+                const playerTwoName = document.getElementById('player-two');
+
+                if (playerOneName.classList == 'highlight') {
+                    const para = document.createElement('p');
+                    para.textContent = playerOne.marker;
+                    cell.append(para);
+                    playerOneName.classList.remove('highlight');
+                    playerTwoName.classList.add('highlight');
+                } else if (playerTwoName.classList == 'highlight') {
+                    const para = document.createElement('p');
+                    para.textContent = playerTwo.marker;
+                    cell.append(para);
+                    playerTwoName.classList.remove('highlight');
+                    playerOneName.classList.add('highlight');
+                }
+
+                
+
+                // when clicked, we want to display the players marker and assign that same value to the board array.
+                // how do we know what marker is being displayed and what player's turn it is?
+                // can we light the player's name to indicate when it is their turn?
+            })
+        })
+
+        // function playerTwoTurn() {
+            
+        //     
+        // }
     }
+    playRound()
 }())
