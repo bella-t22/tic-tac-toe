@@ -59,12 +59,6 @@ const gameFlow = (function () {
                     playerTwoName.classList.remove('highlight');
                     playerOneName.classList.add('highlight');
                 }
-
-                
-
-                // when clicked, we want to display the players marker and assign that same value to the board array.
-                // how do we know what marker is being displayed and what player's turn it is?
-                // can we light the player's name to indicate when it is their turn?
             })
         })
 
