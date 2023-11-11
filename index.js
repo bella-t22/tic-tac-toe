@@ -2,12 +2,10 @@ const gameBoard = (function () {
     const board = [];
     let index;
     for (let i = 0; i < 9; i++) {
-        index = board[i];
-        // const div = document.createElement('div');
-        // cell.value ?
+        index = i;
         board.push(index);
     }
-    return board;
+    return { board }
 }())
 
 const gameFlow = (function () {
@@ -42,6 +40,7 @@ const gameFlow = (function () {
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => {
             // for each cell of the html board, we want to have a corresponding spot in the gameboard array.
+            // we want the cell id to match the array index and add the player marker to the corresponding array index
             cell.addEventListener('click', () => {
                 const playerOneName = document.getElementById('player-one');
                 const playerTwoName = document.getElementById('player-two');
@@ -50,22 +49,21 @@ const gameFlow = (function () {
                     const para = document.createElement('p');
                     para.textContent = playerOne.marker;
                     cell.append(para);
+                    gameBoard.board[cell.id] = playerOne.marker;
+                    console.log(gameBoard.board);
                     playerOneName.classList.remove('highlight');
                     playerTwoName.classList.add('highlight');
                 } else if (playerTwoName.classList == 'highlight') {
                     const para = document.createElement('p');
                     para.textContent = playerTwo.marker;
                     cell.append(para);
+                    gameBoard.board[cell.id] = playerTwo.marker;
+                    console.log(gameBoard.board);
                     playerTwoName.classList.remove('highlight');
                     playerOneName.classList.add('highlight');
                 }
             })
         })
-
-        // function playerTwoTurn() {
-            
-        //     
-        // }
     }
     playRound()
 }())
