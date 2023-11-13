@@ -39,12 +39,10 @@ const gameFlow = (function () {
     function playRound() {
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => {
-            // for each cell of the html board, we want to have a corresponding spot in the gameboard array.
-            // we want the cell id to match the array index and add the player marker to the corresponding array index
             cell.addEventListener('click', () => {
                 const playerOneName = document.getElementById('player-one');
                 const playerTwoName = document.getElementById('player-two');
-
+                // add logic for checking if cell is already inhabited.
                 if (playerOneName.classList == 'highlight') {
                     const para = document.createElement('p');
                     para.textContent = playerOne.marker;
@@ -53,6 +51,7 @@ const gameFlow = (function () {
                     console.log(gameBoard.board);
                     playerOneName.classList.remove('highlight');
                     playerTwoName.classList.add('highlight');
+                    detectWinner();
                 } else if (playerTwoName.classList == 'highlight') {
                     const para = document.createElement('p');
                     para.textContent = playerTwo.marker;
@@ -61,9 +60,23 @@ const gameFlow = (function () {
                     console.log(gameBoard.board);
                     playerTwoName.classList.remove('highlight');
                     playerOneName.classList.add('highlight');
+                    detectWinner();
                 }
             })
         })
-    }
-    playRound()
+    } playRound()
+
+    function detectWinner() {
+        const diagonalOne = [gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]];
+        const diagonalTwo = [gameBoard.board[2], gameBoard.board[4], gameBoard.board[6]];
+        const allEqual = arr => arr.every(val => val === arr[0]);
+
+        if (allEqual(diagonalOne) || allEqual(diagonalTwo)) {
+            if (diagonalOne[0] == playerOne.marker || diagonalTwo[0] == playerOne.marker) {
+                console.log('Player One is the winner!');
+            } else if (diagonalOne[0] == playerTwo.marker || diagonalTwo[0] == playerTwo.marker) {
+                console.log('Player Two is the winner!');
+            }
+        }
+    }    
 }())
