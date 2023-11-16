@@ -67,16 +67,27 @@ const gameFlow = (function () {
     } playRound()
 
     function detectWinner() {
-        const diagonalOne = [gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]];
-        const diagonalTwo = [gameBoard.board[2], gameBoard.board[4], gameBoard.board[6]];
+        // what if we were to create an object of arrays of win patterns, then called allEqual on each array in the object?
+        const winPatterns = [
+            [gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]],
+            [gameBoard.board[2], gameBoard.board[4], gameBoard.board[6]],
+            [gameBoard.board[0], gameBoard.board[1], gameBoard.board[2]],
+            [gameBoard.board[3], gameBoard.board[4], gameBoard.board[5]],
+            [gameBoard.board[6], gameBoard.board[7], gameBoard.board[8]],
+            [gameBoard.board[0], gameBoard.board[3], gameBoard.board[6]],
+            [gameBoard.board[1], gameBoard.board[4], gameBoard.board[7]],
+            [gameBoard.board[2], gameBoard.board[5], gameBoard.board[8]],
+        ]
+
         const allEqual = arr => arr.every(val => val === arr[0]);
 
-        if (allEqual(diagonalOne) || allEqual(diagonalTwo)) {
-            if (diagonalOne[0] == playerOne.marker || diagonalTwo[0] == playerOne.marker) {
-                console.log('Player One is the winner!');
-            } else if (diagonalOne[0] == playerTwo.marker || diagonalTwo[0] == playerTwo.marker) {
-                console.log('Player Two is the winner!');
+        for (arr of winPatterns) {
+            if (allEqual(arr) && arr[0] == playerOne.marker) {
+                 return console.log('Player One Wins!')
+            } else if (allEqual(arr) && arr[0] == playerTwo.marker) {
+                return console.log('Player Two Wins!')
             }
         }
+
     }    
 }())
