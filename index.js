@@ -42,22 +42,19 @@ const gameFlow = (function () {
             cell.addEventListener('click', () => {
                 const playerOneName = document.getElementById('player-one');
                 const playerTwoName = document.getElementById('player-two');
-                // add logic for checking if cell is already inhabited.
-                if (playerOneName.classList == 'highlight') {
+                if (playerOneName.classList == 'highlight' && !cell.hasChildNodes()) {
                     const para = document.createElement('p');
                     para.textContent = playerOne.marker;
                     cell.append(para);
                     gameBoard.board[cell.id] = playerOne.marker;
-                    console.log(gameBoard.board);
                     playerOneName.classList.remove('highlight');
                     playerTwoName.classList.add('highlight');
                     detectWinner();
-                } else if (playerTwoName.classList == 'highlight') {
+                } else if (playerTwoName.classList == 'highlight' && !cell.hasChildNodes()) {
                     const para = document.createElement('p');
                     para.textContent = playerTwo.marker;
                     cell.append(para);
                     gameBoard.board[cell.id] = playerTwo.marker;
-                    console.log(gameBoard.board);
                     playerTwoName.classList.remove('highlight');
                     playerOneName.classList.add('highlight');
                     detectWinner();
