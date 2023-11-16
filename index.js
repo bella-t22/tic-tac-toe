@@ -16,8 +16,8 @@ const gameFlow = (function () {
         });
     })
 
-    function createPlayer(marker, score, roundsWon) {
-        return { marker, score, roundsWon };
+    function createPlayer(name, marker, score) {
+        return { name, marker, score };
     }
 
     let playerOne;
@@ -25,13 +25,15 @@ const gameFlow = (function () {
 
     function chooseMarker(marker) {
         if (marker.value === 'x') {
-            playerOne = createPlayer('x', 0, 0);
-            playerTwo = createPlayer('o', 0, 0);
+            playerOne = createPlayer('', 'x', 0, 0);
+            playerTwo = createPlayer('', 'o', 0, 0);
         } else if (marker.value === 'o') {
-            playerOne = createPlayer('o', 0, 0);
-            playerTwo = createPlayer('x', 0, 0);
+            playerOne = createPlayer('', 'o', 0, 0);
+            playerTwo = createPlayer('', 'x', 0, 0);
         }
         const overlay = document.querySelector('#overlay');
+        const gamePage = document.querySelector('.game-page');
+        gamePage.classList.remove('hidden');
         overlay.classList.add('hidden');
         return playerOne, playerTwo;
     }
@@ -80,9 +82,18 @@ const gameFlow = (function () {
 
         for (arr of winPatterns) {
             if (allEqual(arr) && arr[0] == playerOne.marker) {
-                 return console.log('Player One Wins!')
+                // don't allow players to place marker after one wins
+                const playerOneScore = document.querySelector('.player-one-score');
+                playerOne.score++;
+                playerOneScore.textContent = `Score: ${playerOne.score}`;
+                console.log('Player One Wins!');
+                return;
             } else if (allEqual(arr) && arr[0] == playerTwo.marker) {
-                return console.log('Player Two Wins!')
+                const playerTwoScore = document.querySelector('.player-two-score');
+                playerTwo.score++;
+                playerTwoScore.textContent = `Score: ${playerTwo.score}`;
+                console.log('Player Two Wins!');
+                return;
             }
         }
 

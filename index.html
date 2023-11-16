@@ -13,7 +13,25 @@
     <script src="index.js" defer></script>
 </head>
 <body>
-    <div id="overlay">
+    <div id="name-page-overlay">
+        <div id="enter-name-page">
+            <h1>Enter Names</h1>
+            <form action="">
+                <div class="input-container">
+                    <div class="name-input">
+                        <label for="player-one-name">Player One:</label>
+                        <input type="text">
+                    </div>
+                    <div class="name-input">
+                        <label for="player-two-name">Player Two:</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <button>Play Game</button>
+            </form>
+        </div>
+    </div>
+    <div id="overlay" class="hidden">
         <div id="marker-container">
             <h1>Choose Your Marker</h1>
             <div class="btn-container">
@@ -22,29 +40,29 @@
             </div>
         </div>
     </div>
-    <h1 id="gameboard-title">Tic Tac Toe</h1>
-    <main>
-        <div id="gameboard">
-            <div id="0" class="cell"></div>
-            <div id="1" class="cell"></div>
-            <div id="2" class="cell"></div>
-            <div id="3" class="cell"></div>
-            <div id="4" class="cell"></div>
-            <div id="5" class="cell"></div>
-            <div id="6" class="cell"></div>
-            <div id="7" class="cell"></div>
-            <div id="8" class="cell"></div>
-        </div>
-        <div class="p1">
-            <h2 id="player-one" class="highlight">Player 1</h2>
-            <p class="score">Score: 0</p>
-            <p class="rounds-won">Rounds Won: 0</p>
-        </div>
-        <div class="p2">
-            <h2 id="player-two">Player 2</h2>
-            <p class="score">Score: 0</p>
-            <p class="rounds-won">Rounds Won: 0</p>
-        </div>
-    </main>
+    <div class="game-page hidden">
+        <h1 id="gameboard-title">Tic Tac Toe</h1>
+        <main>
+            <div id="gameboard">
+                <div id="0" class="cell"></div>
+                <div id="1" class="cell"></div>
+                <div id="2" class="cell"></div>
+                <div id="3" class="cell"></div>
+                <div id="4" class="cell"></div>
+                <div id="5" class="cell"></div>
+                <div id="6" class="cell"></div>
+                <div id="7" class="cell"></div>
+                <div id="8" class="cell"></div>
+            </div>
+            <div class="p1">
+                <h2 id="player-one" class="highlight">Player 1</h2>
+                <p class="player-one-score">Score: 0</p>
+            </div>
+            <div class="p2">
+                <h2 id="player-two">Player 2</h2>
+                <p class="player-two-score">Score: 0</p>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

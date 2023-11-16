@@ -13,19 +13,58 @@ h1 {
     letter-spacing: 4px;
 }
 
-#overlay {
+#name-page-overlay, #overlay {
     background-color: aliceblue;
     width: 100vw;
     height: 100vh;
 }
 
-#marker-container {
+#enter-name-page, #marker-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     position: relative;
     top: 200px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.input-container {
+    display: flex;
+    gap: 50px;
+}
+
+.name-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Bevan', serif;
+    font-size: 1.2rem;
+    color:#ed3baf;
+}
+
+.name-input input {
+    width: 200px;
+    height: 25px;
+    border: 2px solid #54c9de;
+    border-radius: 8px;
+    color: #ed3baf;
+    font-family: 'Bevan', serif;
+    padding: 0px 5px;
+}
+
+form button {
+    background-color: #54c9de;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #ed3baf;
+    border-radius: 8px;
+    align-self: center;
 }
 
 #marker-container  .btn-container{
