@@ -20,9 +20,25 @@ const gameFlow = (function () {
         return { name, marker, score };
     }
 
+    const submitNames = document.querySelector('form');
+    submitNames.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const namePage = document.querySelector('#name-page-overlay');
+        const overlay = document.querySelector('#overlay');
+        const playerOneInput = document.querySelector('#player-one-name');
+        const playerTwoInput = document.querySelector('#player-two-name');
+        const playerOneTitle = document.querySelector('#player-one');
+        const playerTwoTitle = document.querySelector('#player-two');
+        const callPlayerOne = document.querySelector('#player-one-choose');
+        callPlayerOne.textContent = `${playerOneInput.value},`;
+        playerOneTitle.textContent = playerOneInput.value;
+        playerTwoTitle.textContent = playerTwoInput.value;
+        namePage.classList.add('hidden');
+        overlay.classList.remove('hidden');
+    })
+
     let playerOne;
     let playerTwo;
-
     function chooseMarker(marker) {
         if (marker.value === 'x') {
             playerOne = createPlayer('', 'x', 0, 0);

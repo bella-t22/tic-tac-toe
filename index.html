@@ -20,11 +20,11 @@
                 <div class="input-container">
                     <div class="name-input">
                         <label for="player-one-name">Player One:</label>
-                        <input type="text">
+                        <input type="text" id="player-one-name" name="player-one-name">
                     </div>
                     <div class="name-input">
                         <label for="player-two-name">Player Two:</label>
-                        <input type="text">
+                        <input type="text" id="player-two-name" name="player-two-name">
                     </div>
                 </div>
                 <button>Play Game</button>
@@ -33,7 +33,10 @@
     </div>
     <div id="overlay" class="hidden">
         <div id="marker-container">
-            <h1>Choose Your Marker</h1>
+            <div class="title-container">
+                <h1 id="player-one-choose"></h1>
+                <h1>Choose Your Marker</h1>
+            </div>
             <div class="btn-container">
                 <button class="marker-btn" value="x">X</button>
                 <button class="marker-btn" value="o">O</button>
@@ -55,11 +58,11 @@
                 <div id="8" class="cell"></div>
             </div>
             <div class="p1">
-                <h2 id="player-one" class="highlight">Player 1</h2>
+                <h2 id="player-one" class="highlight"></h2>
                 <p class="player-one-score">Score: 0</p>
             </div>
             <div class="p2">
-                <h2 id="player-two">Player 2</h2>
+                <h2 id="player-two"></h2>
                 <p class="player-two-score">Score: 0</p>
             </div>
         </main>
