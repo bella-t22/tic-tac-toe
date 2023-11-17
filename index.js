@@ -82,7 +82,6 @@ const gameFlow = (function () {
     } playRound()
 
     function detectWinner() {
-        // what if we were to create an object of arrays of win patterns, then called allEqual on each array in the object?
         const winPatterns = [
             [gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]],
             [gameBoard.board[2], gameBoard.board[4], gameBoard.board[6]],
@@ -99,11 +98,12 @@ const gameFlow = (function () {
         for (arr of winPatterns) {
             if (allEqual(arr) && arr[0] == playerOne.marker) {
                 // don't allow players to place marker after one wins
+
                 const playerOneScore = document.querySelector('.player-one-score');
                 playerOne.score++;
                 playerOneScore.textContent = `Score: ${playerOne.score}`;
                 console.log('Player One Wins!');
-                return;
+                return
             } else if (allEqual(arr) && arr[0] == playerTwo.marker) {
                 const playerTwoScore = document.querySelector('.player-two-score');
                 playerTwo.score++;
@@ -112,6 +112,5 @@ const gameFlow = (function () {
                 return;
             }
         }
-
     }    
 }())

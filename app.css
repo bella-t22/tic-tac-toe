@@ -63,13 +63,15 @@ form {
     padding: 0px 5px;
 }
 
-form button {
+button {
     background-color: #54c9de;
     width: 150px;
     height: 40px;
     border: 2px solid #ed3baf;
     border-radius: 8px;
     align-self: center;
+    color: #ed3baf;
+    font-family: 'Bevan', serif;
 }
 
 #marker-container  .btn-container{
@@ -111,16 +113,25 @@ form button {
     display: none;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+.game-title-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 #gameboard-title {
     font-size: 4rem;
     text-align: center;
-    margin-bottom: 75px;
+}
+
+#start-next-game {
+    margin-bottom: 20px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 #gameboard {
