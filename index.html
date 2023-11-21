@@ -46,7 +46,7 @@
     <div class="game-page hidden">
         <div class="game-title-container">
             <h1 id="gameboard-title">Tic Tac Toe</h1>
-            <button id="start-next-game">Start Next Game</button>
+            <button id="new-game">New Game</button>
         </div>
         <main>
             <div id="gameboard">
@@ -62,13 +62,18 @@
             </div>
             <div class="p1">
                 <h2 id="player-one" class="highlight"></h2>
-                <p class="player-one-score">Score: 0</p>
             </div>
             <div class="p2">
                 <h2 id="player-two"></h2>
-                <p class="player-two-score">Score: 0</p>
             </div>
         </main>
+    </div>
+    <div class="winner-popup-overlay hidden">
+        <div id="winner-popup">
+            <p class="announce">And the winner is...</p>
+            <h1 id="winner-name"></h1>
+            <button id="next-round">Next Round</button>
+        </div>
     </div>
 </body>
 </html>

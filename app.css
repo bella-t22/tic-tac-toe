@@ -109,10 +109,6 @@ button {
     top: 3px;
 }
 
-.hidden {
-    display: none;
-}
-
 .game-title-container {
     display: flex;
     flex-direction: column;
@@ -124,7 +120,7 @@ button {
     text-align: center;
 }
 
-#start-next-game {
+#new-game {
     margin-bottom: 20px;
 }
 
@@ -185,7 +181,6 @@ h2 {
     font-size: 2.5rem;
     letter-spacing: 3px;
     color: #ed3baf;
-    text-decoration: underline;
     text-align: center;
 }
 
@@ -199,4 +194,47 @@ p {
     letter-spacing: 2px;
     color: #54c9de;
     margin: 50px;
+}
+
+.winner-popup-overlay {
+    background-color: #cbecf1aa;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#winner-popup {
+    width: 450px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    font-family: 'Bevan', serif;
+    font-size: .8rem;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.announce {
+    margin: 0;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+#winner-name {
+    color: #ed3baf;
+    text-shadow: 4px 4px #54c9de;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
 }

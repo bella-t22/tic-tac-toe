@@ -9,17 +9,14 @@ const gameBoard = (function () {
 }())
 
 const gameFlow = (function () {
-    const markerBtn = document.querySelectorAll('.marker-btn');
-    markerBtn.forEach((marker) => {
-        marker.addEventListener('click', () => {
-            chooseMarker(marker);
-        });
-    })
 
-    function createPlayer(name, marker, score) {
-        return { name, marker, score };
+    function createPlayer(name, marker) {
+        return { name, marker };
     }
 
+    // if no name is put in, default it to player one or player two
+    let playerOne;
+    let playerTwo;
     const submitNames = document.querySelector('form');
     submitNames.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -30,6 +27,8 @@ const gameFlow = (function () {
         const playerOneTitle = document.querySelector('#player-one');
         const playerTwoTitle = document.querySelector('#player-two');
         const callPlayerOne = document.querySelector('#player-one-choose');
+        playerOne = createPlayer(playerOneInput.value, '');
+        playerTwo = createPlayer(playerTwoInput.value, '');
         callPlayerOne.textContent = `${playerOneInput.value},`;
         playerOneTitle.textContent = playerOneInput.value;
         playerTwoTitle.textContent = playerTwoInput.value;
@@ -37,15 +36,20 @@ const gameFlow = (function () {
         overlay.classList.remove('hidden');
     })
 
-    let playerOne;
-    let playerTwo;
+    const markerBtn = document.querySelectorAll('.marker-btn');
+    markerBtn.forEach((marker) => {
+        marker.addEventListener('click', () => {
+            chooseMarker(marker);
+        });
+    })
+
     function chooseMarker(marker) {
         if (marker.value === 'x') {
-            playerOne = createPlayer('', 'x', 0, 0);
-            playerTwo = createPlayer('', 'o', 0, 0);
+            playerOne.marker = 'x';
+            playerTwo.marker = 'o';
         } else if (marker.value === 'o') {
-            playerOne = createPlayer('', 'o', 0, 0);
-            playerTwo = createPlayer('', 'x', 0, 0);
+            playerOne.marker = 'o';
+            playerTwo.marker = 'x'
         }
         const overlay = document.querySelector('#overlay');
         const gamePage = document.querySelector('.game-page');
@@ -54,34 +58,38 @@ const gameFlow = (function () {
         return playerOne, playerTwo;
     }
 
+    function placeMarker(cell) {
+        const playerOneName = document.getElementById('player-one');
+        const playerTwoName = document.getElementById('player-two');
+        if (playerOneName.classList == 'highlight' && !cell.hasChildNodes()) {
+            const para = document.createElement('p');
+            para.textContent = playerOne.marker;
+            cell.append(para);
+            gameBoard.board[cell.id] = playerOne.marker;
+            playerOneName.classList.remove('highlight');
+            playerTwoName.classList.add('highlight');
+            detectWinner();
+        } else if (playerTwoName.classList == 'highlight' && !cell.hasChildNodes()) {
+            const para = document.createElement('p');
+            para.textContent = playerTwo.marker;
+            cell.append(para);
+            gameBoard.board[cell.id] = playerTwo.marker;
+            playerTwoName.classList.remove('highlight');
+            playerOneName.classList.add('highlight');
+            detectWinner();
+        }
+    }
+
     function playRound() {
         const cells = document.querySelectorAll('.cell');
-        cells.forEach((cell) => {
-            cell.addEventListener('click', () => {
-                const playerOneName = document.getElementById('player-one');
-                const playerTwoName = document.getElementById('player-two');
-                if (playerOneName.classList == 'highlight' && !cell.hasChildNodes()) {
-                    const para = document.createElement('p');
-                    para.textContent = playerOne.marker;
-                    cell.append(para);
-                    gameBoard.board[cell.id] = playerOne.marker;
-                    playerOneName.classList.remove('highlight');
-                    playerTwoName.classList.add('highlight');
-                    detectWinner();
-                } else if (playerTwoName.classList == 'highlight' && !cell.hasChildNodes()) {
-                    const para = document.createElement('p');
-                    para.textContent = playerTwo.marker;
-                    cell.append(para);
-                    gameBoard.board[cell.id] = playerTwo.marker;
-                    playerTwoName.classList.remove('highlight');
-                    playerOneName.classList.add('highlight');
-                    detectWinner();
-                }
+            cells.forEach((cell) => {
+                cell.addEventListener('click', () => {
+                    placeMarker(cell);
+                })
             })
-        })
     } playRound()
 
-    function detectWinner() {
+    const detectWinner = () => {
         const winPatterns = [
             [gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]],
             [gameBoard.board[2], gameBoard.board[4], gameBoard.board[6]],
@@ -94,23 +102,41 @@ const gameFlow = (function () {
         ]
 
         const allEqual = arr => arr.every(val => val === arr[0]);
-
+        const winnerPopupOverlay = document.querySelector('.winner-popup-overlay');
         for (arr of winPatterns) {
             if (allEqual(arr) && arr[0] == playerOne.marker) {
-                // don't allow players to place marker after one wins
-
-                const playerOneScore = document.querySelector('.player-one-score');
-                playerOne.score++;
-                playerOneScore.textContent = `Score: ${playerOne.score}`;
-                console.log('Player One Wins!');
-                return
+                winnerPopupOverlay.classList.remove('hidden');
+                const winner = document.querySelector('#winner-name');
+                winner.textContent = `${playerOne.name}!`;
+                return;
             } else if (allEqual(arr) && arr[0] == playerTwo.marker) {
-                const playerTwoScore = document.querySelector('.player-two-score');
-                playerTwo.score++;
-                playerTwoScore.textContent = `Score: ${playerTwo.score}`;
-                console.log('Player Two Wins!');
+                winnerPopupOverlay.classList.remove('hidden');
+                const winner = document.querySelector('#winner-name');
+                winner.textContent = `${playerTwo.name}!`;
                 return;
             }
         }
-    }    
+    } 
+
+    function eraseBoard() {
+        for (let i = 0; i < gameBoard.board.length; i++) {
+            gameBoard.board[i] = i;
+        }
+        console.log(gameBoard.board);
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+                cell.textContent = '';
+        }) 
+    }
+
+    const nextRoundBtn = document.querySelector('#next-round');
+        nextRoundBtn.addEventListener('click', () => {
+            const winnerPopupOverlay = document.querySelector('.winner-popup-overlay');
+            winnerPopupOverlay.classList.add('hidden');
+            eraseBoard();
+        }) 
+
+    const newGameBtn = document.querySelector('#new-game');
+    newGameBtn.addEventListener('click', eraseBoard);
+
 }())
